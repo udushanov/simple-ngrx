@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { decrement, increment, reset, send } from './actions';
+import { decrement, getDataSuccess, increment, reset, send } from './actions';
+import { Todo } from '../models/todo';
 
 const initialCount = 0;
 
@@ -14,4 +15,10 @@ const initialMessage = '';
 export const messageReducer = createReducer(
   initialMessage,
   on(send, (state, { message }) => message)
+);
+
+const initialData: Todo = {};
+export const dataReducer = createReducer(
+  initialData,
+  on(getDataSuccess, (state, { todos }) => todos)
 );

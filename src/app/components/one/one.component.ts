@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { increment, decrement, reset, send } from 'src/app/store/actions';
+import { Todo } from 'src/app/models/todo';
+import {
+  increment,
+  decrement,
+  reset,
+  send,
+  getData,
+} from 'src/app/store/actions';
 
 @Component({
   selector: 'app-one',
   templateUrl: './one.component.html',
   styleUrls: ['./one.component.scss'],
 })
-export class OneComponent implements OnInit {
+export class OneComponent {
   message: string = '';
 
   constructor(private store: Store) {}
-
-  ngOnInit(): void {}
 
   increment() {
     this.store.dispatch(increment());
@@ -28,5 +33,9 @@ export class OneComponent implements OnInit {
 
   send() {
     this.store.dispatch(send({ message: this.message }));
+  }
+
+  fetch() {
+    this.store.dispatch(getData());
   }
 }
